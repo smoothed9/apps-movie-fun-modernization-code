@@ -1,0 +1,17 @@
+---
+applications:
+- name: moviefun-modern
+  random-route: true
+  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  memory: 1G
+  disk_quota: 1G
+
+  services:
+  - moviefun-s3
+  - movies-mysql
+
+  env:
+    S3_ACCESSKEY: AKIAJCI4JWX2CJAZMB3A
+    S3_BUCKETNAME: cf-686f8280-e0f0-4438-a351-b672225f2344
+    S3_ENDPOINTURL: http://s3.amazonaws.com
+    S3_SECRETKEY: 6oy9elVxsgEpsrjWwQjlYVrlGBUslA8FAI5oaUoO
