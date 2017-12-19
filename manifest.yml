@@ -1,0 +1,39 @@
+---
+memory: 1G
+instances: 1
+applications:
+- name: album-service
+  routes:
+      - route: album-service-sudeep.apps.cumuluslabs.io
+  path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+  services:
+  - albums-mysql
+  env:
+    S3_ACCESSKEY: AKIAJLVGEMLXBMDVD7MQ
+    S3_SECRETKEY: 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
+    S3_BUCKETNAME: cf-686f8280-e0f0-4438-a351-b672225f2344
+    S3_ENDPOINTURL: http://s3.amazonaws.com
+
+- name: movie-service
+  routes:
+      - route: movie-service-sudeep.apps.cumuluslabs.io
+  path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
+  services:
+  - movie-database
+  env:
+    S3_ACCESSKEY: AKIAJLVGEMLXBMDVD7MQ
+    S3_SECRETKEY: 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
+    S3_BUCKETNAME: cf-686f8280-e0f0-4438-a351-b672225f2344
+    S3_ENDPOINTURL: http://s3.amazonaws.com
+
+- name: movie-fun-app
+  routes:
+      - route: movie-fun-app-sudeep.apps.cumuluslabs.io
+  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  env:
+    ALBUMS_URL: https://album-service-sudeep.apps.cumuluslabs.io/albums
+    MOVIES_URL: https://movie-service-sudeep.apps.cumuluslabs.io/movies
+    S3_ACCESSKEY: AKIAJLVGEMLXBMDVD7MQ
+    S3_SECRETKEY: 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
+    S3_BUCKETNAME: cf-686f8280-e0f0-4438-a351-b672225f2344
+    S3_ENDPOINTURL: http://s3.amazonaws.com
